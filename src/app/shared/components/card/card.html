@@ -1,0 +1,11 @@
+<div class="card shadow-sm">
+  <div class="card-body">
+    @if (title) {
+      <h5 class="card-title mb-1">{{ title }}</h5>
+    }
+    @if (subtitle) {
+      <h6 class="card-subtitle text-muted mb-3">{{ subtitle }}</h6>
+    }
+    <ng-content></ng-content>
+  </div>
+</div>

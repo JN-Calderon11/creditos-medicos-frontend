@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, signal } from '@angular/core';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { filter } from 'rxjs';
 import { Header } from './layout/header/header';
 
 @Component({
@@ -10,5 +11,11 @@ import { Header } from './layout/header/header';
   styleUrl: './app.css'
 })
 export class App {
+  readonly showHeader = signal(false);
 
+  constructor(router: Router) {
+    router.events
+      .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
+      .subscribe(event => this.showHeader.set(!event.urlAfterRedirects.startsWith('/login')));
+  }
 }
