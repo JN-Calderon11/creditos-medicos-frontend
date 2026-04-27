@@ -1,0 +1,20 @@
+<div class="mb-3">
+  @if (label) {
+    <label class="form-label" [attr.for]="id">{{ label }}</label>
+  }
+  <input
+    [id]="id"
+    [type]="type"
+    [placeholder]="placeholder"
+    [attr.autocomplete]="autocomplete ?? null"
+    [value]="value()"
+    [disabled]="disabled()"
+    (input)="handleInput($event)"
+    (blur)="handleBlur()"
+    class="form-control"
+    [class.is-invalid]="showError"
+  />
+  @if (showError) {
+    <div class="invalid-feedback d-block">{{ errorMessage }}</div>
+  }
+</div>

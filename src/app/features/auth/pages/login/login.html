@@ -1,1 +1,40 @@
-<p>login works!</p>
+<div class="login-wrapper d-flex justify-content-center align-items-center">
+  <div class="login-card">
+    <app-card title="Iniciar sesión" subtitle="Créditos Médicos">
+      <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <app-text-field
+          label="Correo electrónico"
+          type="email"
+          placeholder="admin@dawa.com"
+          autocomplete="email"
+          formControlName="email"
+        />
+
+        <app-text-field
+          label="Contraseña"
+          type="password"
+          placeholder="••••••••"
+          autocomplete="current-password"
+          formControlName="password"
+        />
+
+        @if (errorMessage()) {
+          <div class="alert alert-danger py-2">{{ errorMessage() }}</div>
+        }
+
+        <button
+          type="submit"
+          class="btn btn-primary w-100"
+          [disabled]="submitting()"
+        >
+          @if (submitting()) {
+            <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+            Ingresando…
+          } @else {
+            Ingresar
+          }
+        </button>
+      </form>
+    </app-card>
+  </div>
+</div>
