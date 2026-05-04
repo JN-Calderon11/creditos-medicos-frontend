@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Auth } from '../../../../core/services/auth';
 import { Card } from '../../../../shared/components/card/card';
 import { TextField } from '../../../../shared/components/text-field/text-field';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -17,11 +18,14 @@ export class Login {
   private readonly auth = inject(Auth);
   private readonly router = inject(Router);
 
+  private readonly authService = inject(AuthService)
+
+
   readonly submitting = signal(false);
   readonly errorMessage = signal<string | null>(null);
 
   readonly form = this.fb.nonNullable.group({
-    email: ['', [Validators.required, Validators.email]],
+    username: ['', [Validators.required]],
     password: ['', [Validators.required, Validators.minLength(4)]],
   });
 
@@ -34,16 +38,17 @@ export class Login {
     this.submitting.set(true);
     this.errorMessage.set(null);
 
-    const { email, password } = this.form.getRawValue();
-    this.auth.signIn(email, password).subscribe({
+    const { username, password } = this.form.getRawValue();
+    this.authService.login({ username, password }).subscribe({
       next: () => {
         this.submitting.set(false);
         this.router.navigateByUrl('/home');
       },
-      error: (err: Error) => {
+      error: (err) => {
         this.submitting.set(false);
-        this.errorMessage.set(err.message);
-      },
+        const message = err.error?.message ?? err.message ?? 'error xd ';
+        this.errorMessage.set(message)
+      }
     });
   }
 }
