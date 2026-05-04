@@ -1,1 +1,29 @@
-<p>credits works!</p>
+<h2>Financial</h2>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Usuario</th>
+      <th>Categoría</th>
+      <th>Fecha</th>
+      <th>Monto</th>
+      <th>Tipo</th>
+      <th>Estado</th>
+      <th>Descripción</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let item of financialData">
+      <td>{{ item.id }}</td>
+      <td>{{ item.usuario }}</td>
+      <td>{{ item.categoria }}</td>
+      <td>{{ item.fecha }}</td>
+      <td>{{ item.monto }}</td>
+      <td>{{ item.tipo }}</td>
+      <td>{{ item.estado }}</td>
+      <td>{{ item.descripcion }}</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,9 +1,20 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-credits',
-  imports: [],
-  templateUrl: './credits.html',
-  styleUrl: './credits.css',
+  imports: [CommonModule],
+  templateUrl: './credits.html'
 })
-export class Credits {}
+export class Credits implements OnInit {
+
+  financialData: any[] = [];
+
+  ngOnInit(): void {
+    fetch('http://localhost:5102/financial')
+      .then(res => res.json())
+      .then(data => {
+        this.financialData = data;
+      });
+  }
+}
