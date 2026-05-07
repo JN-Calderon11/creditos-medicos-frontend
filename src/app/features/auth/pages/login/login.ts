@@ -5,6 +5,7 @@ import { Auth } from '../../../../core/services/auth';
 import { Card } from '../../../../shared/components/card/card';
 import { TextField } from '../../../../shared/components/text-field/text-field';
 import { AuthService } from '../../services/auth.service';
+import { NotificationService } from '../../../notification/pages/alerts/services/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class Login {
   private readonly router = inject(Router);
 
   private readonly authService = inject(AuthService)
-
+  private readonly notification = inject(NotificationService);
 
   readonly submitting = signal(false);
   readonly errorMessage = signal<string | null>(null);
@@ -36,18 +37,28 @@ export class Login {
     }
 
     this.submitting.set(true);
+
+    //Nota: Borrar las lineas de comentario para probar el Toast tipo 'sucess' by: Samuel
+    /*setTimeout(() => {
+      this.submitting.set(false);
+      this.notification.success('Bienvenido', 'Sesión iniciada correctamente');
+      this.router.navigateByUrl('/home');
+    }, 500);
+    return;*/
+
     this.errorMessage.set(null);
 
     const { username, password } = this.form.getRawValue();
     this.authService.login({ username, password }).subscribe({
       next: () => {
         this.submitting.set(false);
+        this.notification.success('Bienvenido', 'Sesión iniciada correctamente');
         this.router.navigateByUrl('/home');
       },
       error: (err) => {
         this.submitting.set(false);
         const message = err.error?.message ?? err.message ?? 'error xd ';
-        this.errorMessage.set(message)
+        this.notification.failure('Error al iniciar sesión', message);
       }
     });
   }

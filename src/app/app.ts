@@ -2,11 +2,12 @@ import { Component, signal } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
 import { Header } from './layout/header/header';
+import { Alerts } from './features/notification/pages/alerts/alerts';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [Header, RouterOutlet],
+  imports: [Header, RouterOutlet, Alerts],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
