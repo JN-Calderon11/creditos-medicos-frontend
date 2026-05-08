@@ -57,8 +57,8 @@ export class Login {
       },
       error: (err) => {
         this.submitting.set(false);
-        const message = err.error?.message ?? err.message ?? 'error xd ';
-        this.notification.failure('Error al iniciar sesión', message);
+        const message = err.message ?? 'No se pudo iniciar sesión';
+        this.notification.failure('Error', message);
       }
     });
   }
