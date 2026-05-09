@@ -23,16 +23,10 @@ export class AuthService {
           this.saveSession(response.data);
         }
       }),
-      catchError((error: HttpErrorResponse) => {
-        const message = this.extractErrorMessage(error);
-        return throwError(() => new Error(message));
+      catchError((error) => {
+        return throwError(() => new Error(error).message);
       })
     );
-  }
-
-  private extractErrorMessage(error: HttpErrorResponse): string {
-    const body = error.error as IHttpResponse<AuthResponse> | null;
-    return body?.message || 'Error al iniciar sesión';
   }
 
   private saveSession(auth: AuthResponse): void {

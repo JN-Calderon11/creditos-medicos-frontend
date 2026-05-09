@@ -6,6 +6,7 @@ import { Card } from '../../../../shared/components/card/card';
 import { TextField } from '../../../../shared/components/text-field/text-field';
 import { AuthService } from '../../services/auth.service';
 import { NotificationService } from '../../../notification/pages/alerts/services/notification.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -48,18 +49,18 @@ export class Login {
 
     this.errorMessage.set(null);
 
-    const { username, password } = this.form.getRawValue();
-    this.authService.login({ username, password }).subscribe({
-      next: () => {
-        this.submitting.set(false);
-        this.notification.success('Bienvenido', 'Sesión iniciada correctamente');
-        this.router.navigateByUrl('/home');
-      },
-      error: (err) => {
-        this.submitting.set(false);
-        const message = err.message ?? 'No se pudo iniciar sesión';
-        this.notification.failure('Error', message);
-      }
-    });
+    this.authService.login(this.form.getRawValue())
+      .pipe(finalize(() => this.submitting.set(false)))
+      .subscribe({
+        next: (res) => {
+          if (!res.success) {
+            this.notification.error(res.message);
+            return;
+          }
+          this.notification.success('Bienvenido', res.message);
+          this.router.navigateByUrl('/home');
+        },
+        error: (err) => this.notification.error(err?.message),
+      });
   }
 }
