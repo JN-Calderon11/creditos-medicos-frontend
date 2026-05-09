@@ -19,12 +19,12 @@ export class AuthService {
 
     return this.http.post<IHttpResponse<AuthResponse>>(url, user).pipe(
       tap(response => {
-        if (response.data) {
+        if (response.success && response.data) {
           this.saveSession(response.data);
         }
       }),
-      catchError((error) => {
-        return throwError(() => new Error(error).message);
+      catchError((err: HttpErrorResponse) => {
+        return throwError(() => new Error(err.error?.message ?? 'Error al iniciar sesión'));
       })
     );
   }

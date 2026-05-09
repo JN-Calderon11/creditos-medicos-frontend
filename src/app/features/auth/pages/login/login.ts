@@ -52,11 +52,7 @@ export class Login {
     this.authService.login(this.form.getRawValue())
       .pipe(finalize(() => this.submitting.set(false)))
       .subscribe({
-        next: (res) => {
-          if (!res.success) {
-            this.notification.error(res.message);
-            return;
-          }
+        next: (res) => {          
           this.notification.success('Bienvenido', res.message);
           this.router.navigateByUrl('/home');
         },
