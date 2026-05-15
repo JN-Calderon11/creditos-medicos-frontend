@@ -1,6 +1,13 @@
 import { Component, inject, signal } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import {
+  FormBuilder,
+  ReactiveFormsModule,
+  Validators
+} from '@angular/forms';
+
 import { Router } from '@angular/router';
+
 import { Auth } from '../../../../core/services/auth';
 import { Card } from '../../../../shared/components/card/card';
 import { TextField } from '../../../../shared/components/text-field/text-field';
@@ -9,17 +16,21 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, Card, TextField],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    Card,
+    TextField
+  ],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
 export class Login {
+
   private readonly fb = inject(FormBuilder);
   private readonly auth = inject(Auth);
   private readonly router = inject(Router);
-
-  private readonly authService = inject(AuthService)
-
+  private readonly authService = inject(AuthService);
 
   readonly submitting = signal(false);
   readonly errorMessage = signal<string | null>(null);
@@ -30,6 +41,7 @@ export class Login {
   });
 
   submit(): void {
+
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
@@ -39,16 +51,27 @@ export class Login {
     this.errorMessage.set(null);
 
     const { username, password } = this.form.getRawValue();
+
     this.authService.login({ username, password }).subscribe({
+
       next: () => {
         this.submitting.set(false);
         this.router.navigateByUrl('/home');
       },
+
       error: (err) => {
         this.submitting.set(false);
-        const message = err.error?.message ?? err.message ?? 'error xd ';
-        this.errorMessage.set(message)
+
+        const message =
+          err?.error?.message ||
+          err?.message ||
+          'Error al iniciar sesión';
+
+        this.errorMessage.set(message);
       }
+
     });
+
   }
+
 }
