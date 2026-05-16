@@ -1,28 +1,233 @@
-<div class="login-wrapper d-flex justify-content-center align-items-center">
-  <div class="login-card">
-    <app-card title="Iniciar sesión" subtitle="Créditos Médicos">
-      <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+<!-- AGREGA ESTO EN index.html -->
 
-        <app-text-field label="Username" type="text" placeholder="admin@dawa.com" autocomplete="username"
-          formControlName="username" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
 
-        <app-text-field label="Contraseña" type="password" placeholder="••••••••" autocomplete="current-password"
-          formControlName="password" />
+<!-- LOGIN -->
 
+<div class="login-container">
+
+  <!-- PANEL IZQUIERDO -->
+  <div class="left-panel">
+
+    <div class="overlay"></div>
+
+    <div class="left-content">
+
+      <!-- LOGO -->
+      <div class="brand">
+
+        <div class="brand-icon">
+          <i class="fa-solid fa-heart-pulse"></i>
+        </div>
+
+        <h2>
+          Health<span>Credit</span>
+        </h2>
+
+      </div>
+
+      <!-- TEXTO -->
+      <div class="hero-content">
+
+        <h1>
+          Créditos<br>
+          médicos, al<br>
+          alcance de<br>
+          todos.
+        </h1>
+
+        <p>
+          Plataforma segura para la gestión
+          de créditos médicos.
+        </p>
+
+      </div>
+
+      <!-- FEATURES -->
+      <div class="feature-list">
+
+        <div class="feature-item">
+
+          <div class="feature-icon">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+
+          <div>
+
+            <h3>
+              Seguridad garantizada
+            </h3>
+
+            <span>
+              Protegemos tu información
+              y datos personales.
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="feature-item">
+
+          <div class="feature-icon">
+            <i class="fa-regular fa-file-lines"></i>
+          </div>
+
+          <div>
+
+            <h3>
+              Gestión eficiente
+            </h3>
+
+            <span>
+              Administra tus créditos
+              fácilmente.
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="feature-item">
+
+          <div class="feature-icon">
+            <i class="fa-solid fa-user-doctor"></i>
+          </div>
+
+          <div>
+
+            <h3>
+              Soporte confiable
+            </h3>
+
+            <span>
+              Estamos aquí para ayudarte.
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- PANEL DERECHO -->
+  <div class="right-panel">
+
+    <div class="login-card">
+
+      <!-- ICONO -->
+      <div class="login-icon">
+        <i class="fa-solid fa-right-to-bracket"></i>
+      </div>
+
+      <!-- HEADER -->
+      <div class="login-header">
+
+        <h2>
+          Iniciar sesión
+        </h2>
+
+        <p>
+          Créditos Médicos
+        </p>
+
+      </div>
+
+      <!-- FORM -->
+      <form
+        [formGroup]="form"
+        (ngSubmit)="submit()">
+
+        <!-- EMAIL -->
+        <div class="input-group">
+
+          <label>
+            Correo electrónico
+          </label>
+
+          <div class="input-wrapper">
+
+            <div class="input-icon">
+              <i class="fa-regular fa-envelope"></i>
+            </div>
+
+            <input
+              type="email"
+              formControlName="username"
+              placeholder="admin">
+
+          </div>
+
+        </div>
+
+        <!-- PASSWORD -->
+        <div class="input-group">
+
+          <label>
+            Contraseña
+          </label>
+
+          <div class="input-wrapper">
+
+            <div class="input-icon">
+              <i class="fa-solid fa-lock"></i>
+            </div>
+
+            <input
+              type="password"
+              formControlName="password"
+              placeholder="••••••••">
+
+            <div class="input-action">
+              <i class="fa-regular fa-eye"></i>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ERROR -->
         @if (errorMessage()) {
-        <div class="alert alert-danger py-2">{{ errorMessage() }}</div>
+
+          <div class="error-box">
+
+            <i class="fa-solid fa-circle-exclamation"></i>
+
+            {{ errorMessage() }}
+
+          </div>
+
         }
 
-        <button type="submit" class="btn btn-primary w-100" [disabled]="submitting()">
-          @if (submitting()) {
-          <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-          Ingresando…
-          } @else {
+        <!-- BOTON -->
+        <button
+          class="btn-login"
+          type="submit">
+
+          <i class="fa-solid fa-right-to-bracket"></i>
+
           Ingresar
-          }
+
         </button>
 
       </form>
-    </app-card>
+
+      <!-- FOOTER -->
+      <div class="login-footer">
+
+        ¿No tienes una cuenta?
+
+      </div>
+
+    </div>
+
   </div>
+
 </div>
