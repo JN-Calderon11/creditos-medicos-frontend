@@ -1,0 +1,15 @@
+<!-- toast.html -->
+<div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1100;">
+    @for (toast of toasts(); track toast.id) {
+    <div class="toast show align-items-center text-white border-0 mb-2"
+        [class.bg-danger]="toast.type === ToastType.Error" [class.bg-success]="toast.type === ToastType.Success"
+        role="alert">
+        <div class="d-flex">
+            <div class="toast-body">{{ toast.message }}</div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" aria-label="Cerrar"
+                (click)="remove(toast.id)">
+            </button>
+        </div>
+    </div>
+    }
+</div>

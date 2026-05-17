@@ -1,0 +1,62 @@
+<div class="card shadow-sm border-0 rounded-4 p-4 h-100 d-flex flex-column"
+  style="border:1px solid #EDEDE0;--p:#0E5B53;--mint:#CDE8E4;--mintsoft:#E7F3F1;--muted:#6B7785">
+
+  <div class="d-flex align-items-start justify-content-between">
+    <div>
+      <h5 class="fw-bold m-0 text-break" style="word-wrap: break-word; overflow-wrap: break-word; white-space: normal;">
+        {{ benefit().title }}
+      </h5>
+      <p class="m-0 fw-medium text-secondary" style="color:var(--muted)">{{ benefit().provider }}</p>
+    </div>
+
+    <div class="d-flex gap-2">
+      <button type="button" class="btn btn-outline-secondary btn-sm rounded-2"
+        style="width:34px;height:34px;border-color:#E3E3D2!important" (click)="edit.emit()">
+        <svg viewBox="0 0 24 24" width="16" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 20h4L18 10l-4-4L4 16z" />
+          <path d="M14 6l4 4" />
+        </svg>
+      </button>
+      <button type="button" class="btn btn-outline-danger btn-sm rounded-2"
+        style="width:34px;height:34px;border-color:#F3C2C2!important" (click)="remove.emit()">
+        <svg viewBox="0 0 24 24" width="16" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 6l12 12M18 6L6 18" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="fw-bold my-3" style="font-size:2.1rem;color:var(--p);line-height:1">
+    ${{ benefit().price }}
+    <small class="fw-semibold ms-1 text-muted" style="font-size:.95rem">/mo payroll</small>
+  </div>
+
+  <div class="fw-semibold rounded-3 px-3 py-2 bg-light" style="background:var(--mintsoft);color:var(--p)">
+    Coverage: {{ benefit().coverage }}
+  </div>
+
+  @if (benefit().includes.length) {
+  <ul class="list-unstyled mt-3 mb-3">
+    @for (item of benefit().includes; track item) {
+    <li class="d-flex align-items-center gap-2 mb-2"
+      style="word-wrap: break-word; overflow-wrap: break-word; white-space: normal;">
+      <span class="badge rounded-circle d-flex justify-content-center align-items-center"
+        style="width:22px;height:22px;background:var(--mint);color:var(--p)">
+        <svg viewBox="0 0 24 24" width="13" fill="none" stroke="currentColor" stroke-width="3">
+          <path d="M5 12l4 4 10-10" />
+        </svg>
+      </span>
+      <span class="text-break">{{ item }}</span>
+    </li>
+
+    }
+  </ul>
+
+  }
+
+  <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
+    <span class="fw-semibold text-secondary" style="font-size:.9rem">
+      {{ benefit().includes.length }} beneficios incluidos
+    </span>
+  </div>
+</div>
