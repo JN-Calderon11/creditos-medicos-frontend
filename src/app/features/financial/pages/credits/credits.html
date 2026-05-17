@@ -1,29 +1,73 @@
-<h2>Financial</h2>
+<div class="financial-container">
 
-<table border="1">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Usuario</th>
-      <th>Categoría</th>
-      <th>Fecha</th>
-      <th>Monto</th>
-      <th>Tipo</th>
-      <th>Estado</th>
-      <th>Descripción</th>
-    </tr>
-  </thead>
+  <div class="header">
+    <h2>Financial</h2>
+    <button (click)="openModal()">+ Add Credit</button>
+  </div>
 
-  <tbody>
-    <tr *ngFor="let item of financialData">
-      <td>{{ item.id }}</td>
-      <td>{{ item.usuario }}</td>
-      <td>{{ item.categoria }}</td>
-      <td>{{ item.fecha }}</td>
-      <td>{{ item.monto }}</td>
-      <td>{{ item.tipo }}</td>
-      <td>{{ item.estado }}</td>
-      <td>{{ item.descripcion }}</td>
-    </tr>
-  </tbody>
-</table>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>User</th>
+        <th>Category</th>
+        <th>Date</th>
+        <th>Amount</th>
+        <th>Type</th>
+        <th>Status</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let item of financialData">
+        <td>{{ item.id }}</td>
+        <td>{{ item.usuario }}</td>
+        <td>{{ item.categoria }}</td>
+        <td>{{ item.fecha }}</td>
+        <td>{{ item.monto }}</td>
+        <td>{{ item.tipo }}</td>
+        <td>{{ item.estado }}</td>
+        <td>{{ item.descripcion }}</td>
+
+        <td>
+          <button (click)="editCredit(item)">Edit</button>
+          <button (click)="deleteCredit(item.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+
+<div class="modal" *ngIf="showModal">
+
+  <div class="modal-content">
+
+    <h3>
+      {{ editMode ? 'Edit Credit' : 'Add Credit' }}
+    </h3>
+
+    <input [(ngModel)]="newCredit.usuario" placeholder="User">
+    <input [(ngModel)]="newCredit.categoria" placeholder="Category">
+    <input [(ngModel)]="newCredit.fecha" type="date">
+    <input [(ngModel)]="newCredit.monto" placeholder="Amount">
+    <input [(ngModel)]="newCredit.tipo" placeholder="Type">
+    <input [(ngModel)]="newCredit.estado" placeholder="Status">
+    <textarea [(ngModel)]="newCredit.descripcion" placeholder="Description"></textarea>
+
+    <div class="buttons">
+      <button (click)="saveCredit()">
+        {{ editMode ? 'Update' : 'Save' }}
+      </button>
+
+      <button (click)="closeModal()">
+        Cancel
+      </button>
+    </div>
+
+  </div>
+
+</div>

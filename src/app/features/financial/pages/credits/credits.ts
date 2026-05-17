@@ -1,20 +1,89 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-credits',
-  imports: [CommonModule],
-  templateUrl: './credits.html'
+  imports: [CommonModule, FormsModule],
+  templateUrl: './credits.html',
+  styleUrl: './credits.css'
 })
-export class Credits implements OnInit {
+export class Credits {
 
   financialData: any[] = [];
 
-  ngOnInit(): void {
-    fetch('http://localhost:5102/financial')
-      .then(res => res.json())
-      .then(data => {
-        this.financialData = data;
-      });
+  showModal = false;
+  editMode = false;
+  editingId: number | null = null;
+
+  newCredit = {
+    usuario: '',
+    categoria: '',
+    fecha: '',
+    monto: '',
+    tipo: '',
+    estado: '',
+    descripcion: ''
+  };
+
+  openModal() {
+    this.showModal = true;
+    this.editMode = false;
+  }
+
+  closeModal() {
+    this.showModal = false;
+
+    this.newCredit = {
+      usuario: '',
+      categoria: '',
+      fecha: '',
+      monto: '',
+      tipo: '',
+      estado: '',
+      descripcion: ''
+    };
+  }
+
+  saveCredit() {
+    if (this.editMode) {
+      this.updateCredit();
+      return;
+    }
+
+    this.financialData.push({
+      id: this.financialData.length + 1,
+      ...this.newCredit
+    });
+
+    this.closeModal();
+  }
+
+  editCredit(item: any) {
+    this.editMode = true;
+    this.showModal = true;
+    this.editingId = item.id;
+
+    this.newCredit = { ...item };
+  }
+
+  updateCredit() {
+    const index = this.financialData.findIndex(
+      x => x.id === this.editingId
+    );
+
+    if (index !== -1) {
+      this.financialData[index] = {
+        id: this.editingId,
+        ...this.newCredit
+      };
+    }
+
+    this.closeModal();
+  }
+
+  deleteCredit(id: number) {
+    this.financialData =
+      this.financialData.filter(x => x.id !== id);
   }
 }

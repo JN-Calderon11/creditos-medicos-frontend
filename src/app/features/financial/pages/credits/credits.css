@@ -1,0 +1,55 @@
+.financial-container{
+  padding:30px;
+}
+
+.header{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:20px;
+}
+
+button{
+  padding:8px 12px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  margin-right:5px;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  background:white;
+}
+
+th, td{
+  padding:12px;
+  border-bottom:1px solid #ddd;
+}
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.4);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.modal-content{
+  background:white;
+  padding:25px;
+  width:400px;
+  border-radius:10px;
+}
+
+input, textarea{
+  width:100%;
+  margin-bottom:10px;
+  padding:10px;
+}
+
+.buttons{
+  display:flex;
+  gap:10px;
+}
