@@ -12,6 +12,8 @@ import { Auth } from '../../../../core/services/auth';
 import { Card } from '../../../../shared/components/card/card';
 import { TextField } from '../../../../shared/components/text-field/text-field';
 import { AuthService } from '../../services/auth.service';
+import { ToastType } from '../../../../shared/interfaces/toast.interface';
+import { ToastService } from '../../../../shared/services/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -31,6 +33,8 @@ export class Login {
   private readonly auth = inject(Auth);
   private readonly router = inject(Router);
   private readonly authService = inject(AuthService);
+  private readonly toast = inject(ToastService);   
+
 
   readonly submitting = signal(false);
   readonly errorMessage = signal<string | null>(null);
@@ -54,8 +58,9 @@ export class Login {
 
     this.authService.login({ username, password }).subscribe({
 
-      next: () => {
+      next: (response) => {
         this.submitting.set(false);
+        this.toast.show(response.message, ToastType.Success);
         this.router.navigateByUrl('/home');
       },
 
