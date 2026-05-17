@@ -1,0 +1,11 @@
+@if (benefits().length === 0) {
+<p class="text-muted">Todavía no hay beneficios. Agregá el primero.</p>
+} @else {
+<div class="row g-3">
+    @for (card of benefits(); track $index) {
+    <div class="col-md-4">
+        <app-benefit-card [benefit]="card" (remove)="remove.emit($index)" (edit)="edit.emit($index)" />
+    </div>
+    }
+</div>
+}

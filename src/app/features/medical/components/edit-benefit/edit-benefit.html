@@ -1,0 +1,45 @@
+<div class="modal-body d-flex justify-content-center">
+    <div class="form-wrapper bg-white rounded-4 shadow-sm p-4 w-100"
+        style="max-width:600px; max-height:70vh; overflow-y:auto; border:1px solid #EDEDE0;">
+
+        <form (submit)="$event.preventDefault(); savePlan()">
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Title</label>
+                <input type="text" [value]="plan().title" (input)="plan.update(p => ({ ...p, title: txtTitle.value }))"
+                    class="form-control rounded-3" required #txtTitle>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Provider</label>
+                <input type="text" [value]="plan().provider"
+                    (input)="plan.update(p => ({ ...p, provider: txtProvider.value }))" class="form-control rounded-3"
+                    required #txtProvider>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Price</label>
+                <input type="number" [value]="plan().price"
+                    (input)="plan.update(p => ({ ...p, price: +txtNumber.value }))" class="form-control rounded-3"
+                    required #txtNumber>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Coverage</label>
+                <input type="text" [value]="plan().coverage"
+                    (input)="plan.update(p => ({ ...p, coverage: txtCoverage.value }))" class="form-control rounded-3"
+                    required #txtCoverage>
+            </div>
+
+            <app-include [initialIncludes]="plan().includes"
+                (newIncludes)="plan.update(p => ({ ...p, includes: $event }))">
+            </app-include>
+        </form>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="submit" class="btn w-100 fw-semibold rounded-3 text-white" style="background:#0E5B53"
+        (click)="savePlan()">
+        Guardar cambios
+    </button>
+</div>
