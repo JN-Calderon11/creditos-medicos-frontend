@@ -1,8 +1,10 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
 import { AuthResponse, loginUser } from '../Interfaces/auth.interface';
-import { catchError, map, Observable, tap, throwError } from 'rxjs';
+import { catchError, Observable, tap, throwError } from 'rxjs';
 import { IHttpResponse } from '../../../shared/interfaces/model.interfaces';
 
 @Injectable({
@@ -10,9 +12,28 @@ import { IHttpResponse } from '../../../shared/interfaces/model.interfaces';
 })
 export class AuthService {
 
-  private http = inject(HttpClient)
+  private http = inject(HttpClient);
+  private router = inject(Router);
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
-  private readonly baseUrl = environment.apiUrl
+  private readonly baseUrl = environment.apiUrl;
+
+  logout(): void {
+    if (this.isBrowser) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('username');
+      localStorage.removeItem('fullname');
+    }
+    this.router.navigateByUrl('/login');
+  }
+
+  getUsername(): string | null {
+    return this.isBrowser ? localStorage.getItem('username') : null;
+  }
+
+  getFullname(): string | null {
+    return this.isBrowser ? localStorage.getItem('fullname') : null;
+  }
 
   login(user: loginUser): Observable<IHttpResponse<AuthResponse>> {
     const url = `${this.baseUrl}auth/login`;
@@ -30,17 +51,9 @@ export class AuthService {
   }
 
   private saveSession(auth: AuthResponse): void {
+    if (!this.isBrowser) return;
     localStorage.setItem('token', auth.token);
     localStorage.setItem('username', auth.username);
     localStorage.setItem('fullname', auth.fullname);
   }
-
-
-
-
-
-
-
-
-
 }

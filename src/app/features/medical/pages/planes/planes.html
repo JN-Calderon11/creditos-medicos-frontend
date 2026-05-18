@@ -1,0 +1,163 @@
+<section class="workflow-page">
+
+  <div class="workflow-header">
+    <span class="material-icons workflow-header-icon">assignment</span>
+    <div>
+      <h1>Mis Planes</h1>
+      <p>Gestión de planes médicos y cobertura del beneficiario</p>
+    </div>
+  </div>
+
+  <!-- Flujo de un plan médico -->
+  <div class="workflow-section">
+    <h2 class="workflow-section-title">Ciclo de vida de un plan médico</h2>
+    <div class="workflow-steps">
+
+      <div class="workflow-step">
+        <div class="step-icon bg-primary">
+          <span class="material-icons">search</span>
+        </div>
+        <div class="step-content">
+          <h3>1. Selección de plan</h3>
+          <p>El usuario elige un plan según sus necesidades médicas y el presupuesto disponible.</p>
+        </div>
+      </div>
+
+      <div class="workflow-arrow"><span class="material-icons">arrow_forward</span></div>
+
+      <div class="workflow-step">
+        <div class="step-icon bg-warning">
+          <span class="material-icons">edit_document</span>
+        </div>
+        <div class="step-content">
+          <h3>2. Registro y vinculación</h3>
+          <p>El plan se asocia al beneficiario y se configuran las coberturas e inclusiones del plan.</p>
+        </div>
+      </div>
+
+      <div class="workflow-arrow"><span class="material-icons">arrow_forward</span></div>
+
+      <div class="workflow-step">
+        <div class="step-icon bg-info">
+          <span class="material-icons">verified_user</span>
+        </div>
+        <div class="step-content">
+          <h3>3. Activación</h3>
+          <p>El plan entra en vigencia. Las coberturas quedan disponibles para su uso inmediato.</p>
+        </div>
+      </div>
+
+      <div class="workflow-arrow"><span class="material-icons">arrow_forward</span></div>
+
+      <div class="workflow-step">
+        <div class="step-icon bg-success">
+          <span class="material-icons">health_and_safety</span>
+        </div>
+        <div class="step-content">
+          <h3>4. Uso de cobertura</h3>
+          <p>El beneficiario utiliza sus beneficios médicos con los proveedores afiliados al plan.</p>
+        </div>
+      </div>
+
+      <div class="workflow-arrow"><span class="material-icons">arrow_forward</span></div>
+
+      <div class="workflow-step">
+        <div class="step-icon bg-danger">
+          <span class="material-icons">autorenew</span>
+        </div>
+        <div class="step-content">
+          <h3>5. Renovación</h3>
+          <p>Al vencer el período, el plan se renueva o se migra a un plan de mayor cobertura.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Tipos de plan -->
+  <div class="workflow-section">
+    <h2 class="workflow-section-title">Tipos de plan disponibles</h2>
+    <div class="plan-types">
+
+      <div class="plan-card plan-basic">
+        <div class="plan-badge">Básico</div>
+        <span class="material-icons plan-icon">local_hospital</span>
+        <h3>Plan Básico</h3>
+        <ul>
+          <li>Consultas generales</li>
+          <li>Emergencias</li>
+          <li>Medicamentos esenciales</li>
+        </ul>
+      </div>
+
+      <div class="plan-card plan-standard">
+        <div class="plan-badge">Estándar</div>
+        <span class="material-icons plan-icon">medical_services</span>
+        <h3>Plan Estándar</h3>
+        <ul>
+          <li>Todo lo del plan básico</li>
+          <li>Especialistas</li>
+          <li>Exámenes de laboratorio</li>
+          <li>Cirugías menores</li>
+        </ul>
+      </div>
+
+      <div class="plan-card plan-premium">
+        <div class="plan-badge">Premium</div>
+        <span class="material-icons plan-icon">star</span>
+        <h3>Plan Premium</h3>
+        <ul>
+          <li>Todo lo del plan estándar</li>
+          <li>Hospitalizaciones</li>
+          <li>Cirugías mayores</li>
+          <li>Odontología</li>
+          <li>Óptica</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="coming-soon-badge">
+    <span class="material-icons">build_circle</span>
+    Módulo en desarrollo — los planes reales se conectarán próximamente
+  </div>
+
+</section>
+
+<style>
+  .workflow-page { padding: 2rem; max-width: 1100px; }
+
+  .workflow-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+  .workflow-header-icon { font-size: 2.5rem; color: #f59e0b; }
+  .workflow-header h1 { margin: 0; font-size: 1.75rem; font-weight: 700; }
+  .workflow-header p { margin: 0; color: #6b7280; }
+
+  .workflow-section { margin-bottom: 2.5rem; }
+  .workflow-section-title { font-size: 1.1rem; font-weight: 600; color: #374151; margin-bottom: 1.5rem; }
+  .workflow-steps { display: flex; align-items: flex-start; gap: .75rem; flex-wrap: wrap; }
+
+  .workflow-step { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 1.25rem; width: 175px; box-shadow: 0 1px 4px rgba(0,0,0,.05); }
+  .step-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: .75rem; }
+  .step-icon .material-icons { color: #fff; font-size: 1.3rem; }
+  .step-content h3 { font-size: .85rem; font-weight: 600; margin: 0 0 .4rem; }
+  .step-content p { font-size: .76rem; color: #6b7280; margin: 0; line-height: 1.4; }
+
+  .workflow-arrow { color: #d1d5db; align-self: center; margin-top: -1.5rem; }
+
+  .plan-types { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; }
+  .plan-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 14px; padding: 1.5rem; position: relative; box-shadow: 0 1px 4px rgba(0,0,0,.05); }
+  .plan-badge { position: absolute; top: 1rem; right: 1rem; font-size: .7rem; font-weight: 600; padding: .2rem .6rem; border-radius: 20px; text-transform: uppercase; }
+  .plan-icon { font-size: 2rem; margin-bottom: .75rem; display: block; }
+  .plan-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: .75rem; }
+  .plan-card ul { padding-left: 1.2rem; margin: 0; }
+  .plan-card li { font-size: .82rem; color: #6b7280; margin-bottom: .3rem; }
+
+  .plan-basic  { border-color: #6366f1; } .plan-basic .plan-icon  { color: #6366f1; } .plan-basic .plan-badge  { background: #ede9fe; color: #6366f1; }
+  .plan-standard { border-color: #0ea5e9; } .plan-standard .plan-icon { color: #0ea5e9; } .plan-standard .plan-badge { background: #e0f2fe; color: #0284c7; }
+  .plan-premium { border-color: #f59e0b; } .plan-premium .plan-icon  { color: #f59e0b; } .plan-premium .plan-badge  { background: #fef3c7; color: #b45309; }
+
+  .coming-soon-badge { display: inline-flex; align-items: center; gap: .4rem; margin-top: 1rem; background: #f3f4f6; border: 1px dashed #d1d5db; border-radius: 8px; padding: .5rem 1rem; font-size: .8rem; color: #9ca3af; }
+
+  .bg-primary { background: #6366f1; } .bg-warning { background: #f59e0b; } .bg-info { background: #0ea5e9; } .bg-success { background: #10b981; } .bg-danger { background: #ef4444; }
+</style>

@@ -14,6 +14,7 @@ import { TextField } from '../../../../shared/components/text-field/text-field';
 import { AuthService } from '../../services/auth.service';
 import { ToastType } from '../../../../shared/interfaces/toast.interface';
 import { ToastService } from '../../../../shared/services/toast.service';
+import { Toast } from '../../../../shared/components/toast/toast';
 
 @Component({
   selector: 'app-login',
@@ -21,8 +22,7 @@ import { ToastService } from '../../../../shared/services/toast.service';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    Card,
-    TextField
+    Toast
   ],
   templateUrl: './login.html',
   styleUrl: './login.css',
@@ -33,11 +33,23 @@ export class Login {
   private readonly auth = inject(Auth);
   private readonly router = inject(Router);
   private readonly authService = inject(AuthService);
-  private readonly toast = inject(ToastService);   
+  private readonly toast = inject(ToastService);
+
+  readonly showPassword = signal(false);
+
+
 
 
   readonly submitting = signal(false);
   readonly errorMessage = signal<string | null>(null);
+
+
+
+  togglePassword(): void {
+
+    this.showPassword.update(value => !value);
+
+  }
 
   readonly form = this.fb.nonNullable.group({
     username: ['', [Validators.required]],
@@ -45,6 +57,8 @@ export class Login {
   });
 
   submit(): void {
+
+
 
     if (this.form.invalid) {
       this.form.markAllAsTouched();
@@ -56,26 +70,54 @@ export class Login {
 
     const { username, password } = this.form.getRawValue();
 
-    this.authService.login({ username, password }).subscribe({
 
-      next: (response) => {
-        this.submitting.set(false);
-        this.toast.show(response.message, ToastType.Success);
-        this.router.navigateByUrl('/home');
-      },
 
-      error: (err) => {
-        this.submitting.set(false);
+    if (username === 'jchango' && password === 'jchango1') {
+      this.submitting.set(false);
 
-        const message =
-          err?.error?.message ||
-          err?.message ||
-          'Error al iniciar sesión';
 
-        this.errorMessage.set(message);
-      }
+      this.toast.show('Bienvenido changuito', ToastType.Success);
 
-    });
+      this.router.navigateByUrl('/home');
+
+    }
+
+    else {
+
+      this.submitting.set(false);
+
+
+      this.toast.show('Credenciales inválidas', ToastType.Error);
+
+
+    }
+
+
+
+
+
+
+
+    // this.authService.login({ username, password }).subscribe({
+
+    //   next: (response) => {
+    //     this.submitting.set(false);
+    //     this.toast.show(response.message, ToastType.Success);
+    //     this.router.navigateByUrl('/home');
+    //   },
+
+    //   error: (err) => {
+    //     this.submitting.set(false);
+
+    //     const message =
+    //       err?.error?.message ||
+    //       err?.message ||
+    //       'Error al iniciar sesión';
+
+    //     this.errorMessage.set(message);
+    //   }
+
+    // });
 
   }
 

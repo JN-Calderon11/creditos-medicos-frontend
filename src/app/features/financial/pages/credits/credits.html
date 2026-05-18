@@ -1,70 +1,158 @@
-<div class="financial-container">
+<div class="financial-page">
 
-  <div class="header">
-    <h2>Financial</h2>
-    <button (click)="openModal()">+ Add Credit</button>
+  <div class="financial-header">
+    <div class="financial-header__title">
+      <div class="financial-header__icon">
+        <i class="fa-solid fa-sack-dollar"></i>
+      </div>
+      <div>
+        <h2>HealthCare</h2>
+        <p>Gestión de créditos otorgados</p>
+      </div>
+    </div>
+    <button class="btn-primary" (click)="openModal()">
+      <i class="fa-solid fa-plus"></i>
+      Agregar crédito
+    </button>
   </div>
 
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>User</th>
-        <th>Category</th>
-        <th>Date</th>
-        <th>Amount</th>
-        <th>Type</th>
-        <th>Status</th>
-        <th>Description</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
+  <div class="financial-card">
+    <table class="financial-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Usuario</th>
+          <th>Categoría</th>
+          <th>Fecha</th>
+          <th>Monto</th>
+          <th>Tipo</th>
+          <th>Estado</th>
+          <th>Descripción</th>
+          <th class="text-end">Acciones</th>
+        </tr>
+      </thead>
 
-    <tbody>
-      <tr *ngFor="let item of financialData">
-        <td>{{ item.id }}</td>
-        <td>{{ item.usuario }}</td>
-        <td>{{ item.categoria }}</td>
-        <td>{{ item.fecha }}</td>
-        <td>{{ item.monto }}</td>
-        <td>{{ item.tipo }}</td>
-        <td>{{ item.estado }}</td>
-        <td>{{ item.descripcion }}</td>
+      <tbody>
+        <tr *ngFor="let item of financialData">
+          <td><span class="id-chip">#{{ item.id }}</span></td>
+          <td>{{ item.usuario }}</td>
+          <td>{{ item.categoria }}</td>
+          <td>{{ item.fecha }}</td>
+          <td class="amount">{{ item.monto }}</td>
+          <td>{{ item.tipo }}</td>
+          <td><span class="status-chip">{{ item.estado }}</span></td>
+          <td class="desc">{{ item.descripcion }}</td>
+          <td class="text-end">
+            <button class="btn-icon btn-icon--edit" (click)="editCredit(item)" title="Editar">
+              <i class="fa-solid fa-pen"></i>
+            </button>
+            <button class="btn-icon btn-icon--danger" (click)="deleteCredit(item.id)" title="Eliminar">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </td>
+        </tr>
 
-        <td>
-          <button (click)="editCredit(item)">Edit</button>
-          <button (click)="deleteCredit(item.id)">Delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+        <tr *ngIf="financialData.length === 0">
+          <td colspan="9" class="empty-state">
+            <i class="fa-regular fa-folder-open"></i>
+            <span>Aún no hay créditos registrados</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
 </div>
 
 
-<div class="modal" *ngIf="showModal">
+<div class="credit-overlay" *ngIf="showModal" (click)="closeModal()">
 
-  <div class="modal-content">
+  <div class="credit-modal" (click)="$event.stopPropagation()">
 
-    <h3>
-      {{ editMode ? 'Edit Credit' : 'Add Credit' }}
-    </h3>
-
-    <input [(ngModel)]="newCredit.usuario" placeholder="User">
-    <input [(ngModel)]="newCredit.categoria" placeholder="Category">
-    <input [(ngModel)]="newCredit.fecha" type="date">
-    <input [(ngModel)]="newCredit.monto" placeholder="Amount">
-    <input [(ngModel)]="newCredit.tipo" placeholder="Type">
-    <input [(ngModel)]="newCredit.estado" placeholder="Status">
-    <textarea [(ngModel)]="newCredit.descripcion" placeholder="Description"></textarea>
-
-    <div class="buttons">
-      <button (click)="saveCredit()">
-        {{ editMode ? 'Update' : 'Save' }}
+    <div class="credit-modal__header">
+      <div class="credit-modal__icon">
+        <i class="fa-solid" [ngClass]="editMode ? 'fa-pen-to-square' : 'fa-circle-plus'"></i>
+      </div>
+      <div class="credit-modal__title">
+        <h3>{{ editMode ? 'Editar crédito' : 'Nuevo crédito' }}</h3>
+        <p>{{ editMode ? 'Modifica los datos del crédito' : 'Registra un nuevo crédito médico' }}</p>
+      </div>
+      <button class="credit-modal__close" (click)="closeModal()" aria-label="Cerrar">
+        <i class="fa-solid fa-xmark"></i>
       </button>
+    </div>
 
-      <button (click)="closeModal()">
-        Cancel
+    <div class="credit-modal__body">
+
+      <div class="credit-grid">
+
+        <div class="credit-field">
+          <label>Usuario</label>
+          <div class="credit-input">
+            <span class="credit-input__icon"><i class="fa-solid fa-user"></i></span>
+            <input [(ngModel)]="newCredit.usuario" placeholder="Nombre del usuario">
+          </div>
+        </div>
+
+        <div class="credit-field">
+          <label>Categoría</label>
+          <div class="credit-input">
+            <span class="credit-input__icon"><i class="fa-solid fa-tag"></i></span>
+            <input [(ngModel)]="newCredit.categoria" placeholder="Ej. Consulta, Cirugía">
+          </div>
+        </div>
+
+        <div class="credit-field">
+          <label>Fecha</label>
+          <div class="credit-input">
+            <span class="credit-input__icon"><i class="fa-regular fa-calendar"></i></span>
+            <input [(ngModel)]="newCredit.fecha" type="date">
+          </div>
+        </div>
+
+        <div class="credit-field">
+          <label>Monto</label>
+          <div class="credit-input">
+            <span class="credit-input__icon"><i class="fa-solid fa-dollar-sign"></i></span>
+            <input [(ngModel)]="newCredit.monto" placeholder="0.00">
+          </div>
+        </div>
+
+        <div class="credit-field">
+          <label>Tipo</label>
+          <div class="credit-input">
+            <span class="credit-input__icon"><i class="fa-solid fa-layer-group"></i></span>
+            <input [(ngModel)]="newCredit.tipo" placeholder="Ambulatorio, Hospitalario…">
+          </div>
+        </div>
+
+        <div class="credit-field">
+          <label>Estado</label>
+          <div class="credit-input">
+            <span class="credit-input__icon"><i class="fa-solid fa-circle-check"></i></span>
+            <input [(ngModel)]="newCredit.estado" placeholder="Pendiente, Aprobado…">
+          </div>
+        </div>
+
+        <div class="credit-field credit-field--full">
+          <label>Descripción</label>
+          <div class="credit-input credit-input--textarea">
+            <span class="credit-input__icon"><i class="fa-regular fa-comment-dots"></i></span>
+            <textarea [(ngModel)]="newCredit.descripcion" placeholder="Detalle del crédito…" rows="3"></textarea>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="credit-modal__footer">
+      <button class="credit-btn credit-btn--ghost" (click)="closeModal()">
+        Cancelar
+      </button>
+      <button class="credit-btn credit-btn--primary" (click)="saveCredit()">
+        <i class="fa-solid" [ngClass]="editMode ? 'fa-floppy-disk' : 'fa-plus'"></i>
+        {{ editMode ? 'Actualizar' : 'Guardar' }}
       </button>
     </div>
 

@@ -1,1 +1,74 @@
-<p>home works!</p>
+<div class="layout" [attr.data-sidebar-phase]="sidebarPhase()">
+  <app-sidebar [phase]="sidebarPhase()"></app-sidebar>
+
+  <div class="main-area">
+
+    <!-- ── Topbar ── -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button
+          type="button"
+          class="sidebar-toggle"
+          (click)="cycleSidebar()"
+          [title]="'Alternar sidebar'"
+          aria-label="Alternar sidebar">
+          <span class="material-icons">menu</span>
+        </button>
+        <div class="topbar-brand">
+          <span class="material-icons topbar-brand-icon">favorite</span>
+          <span class="topbar-title">Dashboard</span>
+        </div>
+      </div>
+
+      <div class="topbar-actions">
+        <button
+          class="theme-toggle"
+          (click)="theme.toggle()"
+          [title]="theme.isDark() ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'">
+          <span class="material-icons">
+            {{ theme.isDark() ? 'light_mode' : 'dark_mode' }}
+          </span>
+          {{ theme.isDark() ? 'Modo claro' : 'Modo oscuro' }}
+        </button>
+
+        <div class="user-menu">
+          <button
+            type="button"
+            class="user-menu-trigger"
+            (click)="toggleMenu()"
+            [attr.aria-expanded]="menuOpen()"
+            aria-haspopup="menu">
+            <span class="user-avatar">{{ initials() }}</span>
+            <span class="user-name">{{ fullname() || username() || 'Usuario' }}</span>
+            <span class="material-icons chevron">expand_more</span>
+          </button>
+
+          @if (menuOpen()) {
+            <div class="user-menu-dropdown" role="menu">
+              <div class="user-menu-header">
+                <span class="user-menu-fullname">{{ fullname() || 'Usuario' }}</span>
+                @if (username()) {
+                  <span class="user-menu-username">&#64;{{ username() }}</span>
+                }
+              </div>
+              <button
+                type="button"
+                class="user-menu-item logout"
+                role="menuitem"
+                (click)="onLogOut()">
+                <span class="material-icons">logout</span>
+                Cerrar sesión
+              </button>
+            </div>
+          }
+        </div>
+      </div>
+    </header>
+
+    <!-- ── Content ── -->
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+
+  </div>
+</div>

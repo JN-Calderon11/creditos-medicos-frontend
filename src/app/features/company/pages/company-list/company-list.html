@@ -1,1 +1,144 @@
-<p>company-list works!</p>
+<section class="workflow-page">
+
+  <div class="workflow-header">
+    <span class="material-icons workflow-header-icon">people</span>
+    <div>
+      <h1>Users</h1>
+      <p>Gestión de usuarios y empresas afiliadas al sistema</p>
+    </div>
+  </div>
+
+  <!-- Flujo de registro -->
+  <div class="workflow-section">
+    <h2 class="workflow-section-title">Flujo de registro de un usuario</h2>
+    <div class="workflow-steps">
+
+      <div class="workflow-step">
+        <div class="step-icon bg-primary">
+          <span class="material-icons">domain</span>
+        </div>
+        <div class="step-content">
+          <h3>1. Registrar empresa</h3>
+          <p>Se registra la empresa empleadora con su RUC, nombre y datos de contacto.</p>
+        </div>
+      </div>
+
+      <div class="workflow-arrow"><span class="material-icons">arrow_forward</span></div>
+
+      <div class="workflow-step">
+        <div class="step-icon bg-warning">
+          <span class="material-icons">person_add</span>
+        </div>
+        <div class="step-content">
+          <h3>2. Crear usuario</h3>
+          <p>Se crea la cuenta del beneficiario con sus datos personales y credenciales de acceso.</p>
+        </div>
+      </div>
+
+      <div class="workflow-arrow"><span class="material-icons">arrow_forward</span></div>
+
+      <div class="workflow-step">
+        <div class="step-icon bg-info">
+          <span class="material-icons">link</span>
+        </div>
+        <div class="step-content">
+          <h3>3. Vincular empresa</h3>
+          <p>El usuario queda asociado a la empresa para acceder a los planes y beneficios corporativos.</p>
+        </div>
+      </div>
+
+      <div class="workflow-arrow"><span class="material-icons">arrow_forward</span></div>
+
+      <div class="workflow-step">
+        <div class="step-icon bg-success">
+          <span class="material-icons">how_to_reg</span>
+        </div>
+        <div class="step-content">
+          <h3>4. Activar cuenta</h3>
+          <p>Cuenta activada. El usuario puede ingresar y solicitar créditos médicos.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Roles del sistema -->
+  <div class="workflow-section">
+    <h2 class="workflow-section-title">Roles en el sistema</h2>
+    <div class="roles-grid">
+
+      <div class="role-card">
+        <span class="material-icons role-icon" style="color:#6366f1">admin_panel_settings</span>
+        <h3>Administrador</h3>
+        <p>Acceso total al sistema. Gestiona usuarios, empresas, planes y configuración.</p>
+        <ul>
+          <li>CRUD de usuarios y empresas</li>
+          <li>Aprobación de créditos</li>
+          <li>Configuración global</li>
+        </ul>
+      </div>
+
+      <div class="role-card">
+        <span class="material-icons role-icon" style="color:#0ea5e9">business_center</span>
+        <h3>Empresa</h3>
+        <p>Gestiona los beneficiarios de su organización y consulta el estado de los créditos.</p>
+        <ul>
+          <li>Ver beneficiarios propios</li>
+          <li>Consultar créditos</li>
+          <li>Reportes por empresa</li>
+        </ul>
+      </div>
+
+      <div class="role-card">
+        <span class="material-icons role-icon" style="color:#10b981">person</span>
+        <h3>Beneficiario</h3>
+        <p>Usuario final del sistema. Solicita créditos y consulta el estado de sus planes.</p>
+        <ul>
+          <li>Solicitar créditos</li>
+          <li>Ver mis planes</li>
+          <li>Historial de pagos</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="coming-soon-badge">
+    <span class="material-icons">build_circle</span>
+    Módulo en desarrollo — la gestión real de usuarios se conectará próximamente
+  </div>
+
+</section>
+
+<style>
+  .workflow-page { padding: 2rem; max-width: 1100px; }
+
+  .workflow-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+  .workflow-header-icon { font-size: 2.5rem; color: #0ea5e9; }
+  .workflow-header h1 { margin: 0; font-size: 1.75rem; font-weight: 700; }
+  .workflow-header p { margin: 0; color: #6b7280; }
+
+  .workflow-section { margin-bottom: 2.5rem; }
+  .workflow-section-title { font-size: 1.1rem; font-weight: 600; color: #374151; margin-bottom: 1.5rem; }
+  .workflow-steps { display: flex; align-items: flex-start; gap: .75rem; flex-wrap: wrap; }
+
+  .workflow-step { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 1.25rem; width: 200px; box-shadow: 0 1px 4px rgba(0,0,0,.05); }
+  .step-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: .75rem; }
+  .step-icon .material-icons { color: #fff; font-size: 1.3rem; }
+  .step-content h3 { font-size: .9rem; font-weight: 600; margin: 0 0 .4rem; }
+  .step-content p { font-size: .78rem; color: #6b7280; margin: 0; line-height: 1.4; }
+
+  .workflow-arrow { color: #d1d5db; align-self: center; margin-top: -1.5rem; }
+
+  .roles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; }
+  .role-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 1.5rem; box-shadow: 0 1px 4px rgba(0,0,0,.05); }
+  .role-icon { font-size: 2rem; display: block; margin-bottom: .75rem; }
+  .role-card h3 { font-size: .95rem; font-weight: 600; margin: 0 0 .4rem; }
+  .role-card p { font-size: .8rem; color: #6b7280; margin: 0 0 .75rem; }
+  .role-card ul { padding-left: 1.2rem; margin: 0; }
+  .role-card li { font-size: .8rem; color: #6b7280; margin-bottom: .25rem; }
+
+  .coming-soon-badge { display: inline-flex; align-items: center; gap: .4rem; margin-top: 1rem; background: #f3f4f6; border: 1px dashed #d1d5db; border-radius: 8px; padding: .5rem 1rem; font-size: .8rem; color: #9ca3af; }
+
+  .bg-primary { background: #6366f1; } .bg-warning { background: #f59e0b; } .bg-info { background: #0ea5e9; } .bg-success { background: #10b981; }
+</style>

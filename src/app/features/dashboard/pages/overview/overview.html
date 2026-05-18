@@ -1,0 +1,145 @@
+<section class="workflow-page">
+
+  <div class="workflow-header">
+    <span class="material-icons workflow-header-icon">dashboard</span>
+    <div>
+      <h1>Overview</h1>
+      <p>Resumen general del sistema de créditos médicos</p>
+    </div>
+  </div>
+
+  <!-- Métricas rápidas -->
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <span class="material-icons metric-icon text-primary">assignment</span>
+      <div class="metric-body">
+        <span class="metric-value">—</span>
+        <span class="metric-label">Créditos activos</span>
+      </div>
+    </div>
+    <div class="metric-card">
+      <span class="material-icons metric-icon text-success">people</span>
+      <div class="metric-body">
+        <span class="metric-value">—</span>
+        <span class="metric-label">Usuarios registrados</span>
+      </div>
+    </div>
+    <div class="metric-card">
+      <span class="material-icons metric-icon text-warning">medical_services</span>
+      <div class="metric-body">
+        <span class="metric-value">—</span>
+        <span class="metric-label">Planes médicos</span>
+      </div>
+    </div>
+    <div class="metric-card">
+      <span class="material-icons metric-icon text-danger">account_balance</span>
+      <div class="metric-body">
+        <span class="metric-value">—</span>
+        <span class="metric-label">Monto total financiado</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Flujo general del sistema -->
+  <div class="workflow-section">
+    <h2 class="workflow-section-title">Flujo del sistema</h2>
+    <div class="workflow-steps">
+
+      <div class="workflow-step">
+        <div class="step-icon bg-primary">
+          <span class="material-icons">person_add</span>
+        </div>
+        <div class="step-content">
+          <h3>1. Registro de usuario</h3>
+          <p>El paciente o beneficiario es registrado en el sistema con sus datos personales y empresa afiliada.</p>
+        </div>
+      </div>
+
+      <div class="workflow-arrow">
+        <span class="material-icons">arrow_forward</span>
+      </div>
+
+      <div class="workflow-step">
+        <div class="step-icon bg-warning">
+          <span class="material-icons">assignment</span>
+        </div>
+        <div class="step-content">
+          <h3>2. Solicitud de crédito</h3>
+          <p>El usuario solicita un crédito médico indicando monto, categoría y descripción del gasto.</p>
+        </div>
+      </div>
+
+      <div class="workflow-arrow">
+        <span class="material-icons">arrow_forward</span>
+      </div>
+
+      <div class="workflow-step">
+        <div class="step-icon bg-info">
+          <span class="material-icons">rate_review</span>
+        </div>
+        <div class="step-content">
+          <h3>3. Evaluación</h3>
+          <p>El sistema evalúa la solicitud según el plan médico del usuario y los límites de cobertura disponibles.</p>
+        </div>
+      </div>
+
+      <div class="workflow-arrow">
+        <span class="material-icons">arrow_forward</span>
+      </div>
+
+      <div class="workflow-step">
+        <div class="step-icon bg-success">
+          <span class="material-icons">check_circle</span>
+        </div>
+        <div class="step-content">
+          <h3>4. Aprobación y desembolso</h3>
+          <p>Crédito aprobado y registrado. El beneficiario recibe notificación y el monto queda disponible.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="coming-soon-badge">
+    <span class="material-icons">build_circle</span>
+    Módulo en desarrollo — los datos reales se conectarán próximamente
+  </div>
+
+</section>
+
+<style>
+  .workflow-page { padding: 2rem; max-width: 1100px; color: var(--bs-body-color); }
+
+  .workflow-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+  .workflow-header-icon { font-size: 2.5rem; color: var(--bs-primary); }
+  .workflow-header h1 { margin: 0; font-size: 1.75rem; font-weight: 700; color: var(--bs-body-color); }
+  .workflow-header p { margin: 0; color: var(--bs-secondary-color); }
+
+  .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2.5rem; }
+  .metric-card { background: var(--bs-card-bg); border: 1px solid var(--bs-border-color); border-radius: 12px; padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem; box-shadow: 0 1px 4px rgba(0,0,0,.05); }
+  .metric-icon { font-size: 2rem; }
+  .metric-value { display: block; font-size: 1.5rem; font-weight: 700; color: var(--bs-body-color); }
+  .metric-label { font-size: .8rem; color: var(--bs-secondary-color); }
+
+  .workflow-section-title { font-size: 1.1rem; font-weight: 600; color: var(--bs-body-color); margin-bottom: 1.5rem; }
+  .workflow-steps { display: flex; align-items: flex-start; gap: .75rem; flex-wrap: wrap; }
+
+  .workflow-step { background: var(--bs-card-bg); border: 1px solid var(--bs-border-color); border-radius: 12px; padding: 1.25rem; width: 200px; box-shadow: 0 1px 4px rgba(0,0,0,.05); }
+  .step-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: .75rem; }
+  .step-icon .material-icons { color: #fff; font-size: 1.3rem; }
+  .step-content h3 { font-size: .9rem; font-weight: 600; margin: 0 0 .4rem; color: var(--bs-body-color); }
+  .step-content p { font-size: .78rem; color: var(--bs-secondary-color); margin: 0; line-height: 1.4; }
+
+  .workflow-arrow { color: var(--bs-border-color); align-self: center; margin-top: -1.5rem; }
+
+  .coming-soon-badge { display: inline-flex; align-items: center; gap: .4rem; margin-top: 2rem; background: var(--bs-body-bg-subtle); border: 1px dashed var(--bs-border-color); border-radius: 8px; padding: .5rem 1rem; font-size: .8rem; color: var(--bs-secondary-color); }
+
+  .bg-primary { background: var(--bs-primary); }
+  .bg-warning { background: var(--bs-warning); }
+  .bg-info    { background: #0ea5e9; }
+  .bg-success { background: var(--bs-success); }
+  .text-primary { color: var(--bs-primary); }
+  .text-success { color: var(--bs-success); }
+  .text-warning { color: var(--bs-warning); }
+  .text-danger  { color: var(--bs-danger); }
+</style>

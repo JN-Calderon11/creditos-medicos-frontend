@@ -1,0 +1,22 @@
+<nav class="sidebar" [class.collapsed]="phase === 1" [class.hidden]="phase === 2">
+  <div class="sidebar-header">
+    <span class="material-icons logo-icon">local_hospital</span>
+    <span class="brand-name">HealthCare</span>
+  </div>
+
+  <ul class="nav-list">
+    @for (item of navItems; track item.route) {
+    <li>
+      <a [routerLink]="item.route" routerLinkActive="active" class="nav-item" [title]="item.label">
+        <span class="material-icons">{{ item.icon }}</span>
+        <span class="nav-label">{{ item.label }}</span>
+      </a>
+    </li>
+    }
+  </ul>
+
+  <div class="sidebar-footer" [title]="'Mi cuenta'">
+    <span class="material-icons footer-icon">account_circle</span>
+    <span class="footer-label">Mi cuenta</span>
+  </div>
+</nav>

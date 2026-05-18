@@ -1,45 +1,87 @@
-<div class="modal-body d-flex justify-content-center">
-    <div class="form-wrapper bg-white rounded-4 shadow-sm p-4 w-100"
-        style="max-width:600px; max-height:70vh; overflow-y:auto; border:1px solid #EDEDE0;">
+<div class="benefit-modal">
 
-        <form (submit)="$event.preventDefault(); savePlan()">
-            <div class="mb-3">
-                <label class="form-label fw-semibold">Title</label>
-                <input type="text" [value]="plan().title" (input)="plan.update(p => ({ ...p, title: txtTitle.value }))"
-                    class="form-control rounded-3" required #txtTitle>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label fw-semibold">Provider</label>
-                <input type="text" [value]="plan().provider"
-                    (input)="plan.update(p => ({ ...p, provider: txtProvider.value }))" class="form-control rounded-3"
-                    required #txtProvider>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label fw-semibold">Price</label>
-                <input type="number" [value]="plan().price"
-                    (input)="plan.update(p => ({ ...p, price: +txtNumber.value }))" class="form-control rounded-3"
-                    required #txtNumber>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label fw-semibold">Coverage</label>
-                <input type="text" [value]="plan().coverage"
-                    (input)="plan.update(p => ({ ...p, coverage: txtCoverage.value }))" class="form-control rounded-3"
-                    required #txtCoverage>
-            </div>
-
-            <app-include [initialIncludes]="plan().includes"
-                (newIncludes)="plan.update(p => ({ ...p, includes: $event }))">
-            </app-include>
-        </form>
+  <div class="benefit-modal__header">
+    <div class="benefit-modal__icon">
+      <i class="fa-solid fa-pen-to-square"></i>
     </div>
-</div>
-
-<div class="modal-footer">
-    <button type="submit" class="btn w-100 fw-semibold rounded-3 text-white" style="background:#0E5B53"
-        (click)="savePlan()">
-        Guardar cambios
+    <div class="benefit-modal__title">
+      <h3>Editar plan médico</h3>
+      <p>Actualiza la información del plan de cobertura</p>
+    </div>
+    <button type="button" class="benefit-modal__close" (click)="cancel()" aria-label="Cerrar">
+      <i class="fa-solid fa-xmark"></i>
     </button>
+  </div>
+
+  <div class="benefit-modal__body">
+
+    <form (submit)="$event.preventDefault(); savePlan()">
+
+      <div class="benefit-grid">
+
+        <div class="benefit-field">
+          <label>Título</label>
+          <div class="benefit-input">
+            <span class="benefit-input__icon"><i class="fa-solid fa-heading"></i></span>
+            <input type="text" [value]="plan().title"
+              (input)="plan.update(p => ({ ...p, title: txtTitle.value }))" placeholder="Plan Premium" required
+              #txtTitle>
+          </div>
+        </div>
+
+        <div class="benefit-field">
+          <label>Proveedor</label>
+          <div class="benefit-input">
+            <span class="benefit-input__icon"><i class="fa-solid fa-hospital"></i></span>
+            <input type="text" [value]="plan().provider"
+              (input)="plan.update(p => ({ ...p, provider: txtProvider.value }))" placeholder="Clínica…" required
+              #txtProvider>
+          </div>
+        </div>
+
+        <div class="benefit-field">
+          <label>Precio</label>
+          <div class="benefit-input">
+            <span class="benefit-input__icon"><i class="fa-solid fa-dollar-sign"></i></span>
+            <input type="number" [value]="plan().price"
+              (input)="plan.update(p => ({ ...p, price: +txtNumber.value }))" placeholder="0.00" required
+              #txtNumber>
+          </div>
+        </div>
+
+        <div class="benefit-field">
+          <label>Cobertura</label>
+          <div class="benefit-input">
+            <span class="benefit-input__icon"><i class="fa-solid fa-shield-heart"></i></span>
+            <input type="text" [value]="plan().coverage"
+              (input)="plan.update(p => ({ ...p, coverage: txtCoverage.value }))" placeholder="80%" required
+              #txtCoverage>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="benefit-section">
+        <div class="benefit-section__title">
+          <i class="fa-solid fa-list-check"></i>
+          <span>Beneficios incluidos</span>
+        </div>
+        <app-include [initialIncludes]="plan().includes"
+          (newIncludes)="plan.update(p => ({ ...p, includes: $event }))"></app-include>
+      </div>
+
+    </form>
+
+  </div>
+
+  <div class="benefit-modal__footer">
+    <button type="button" class="benefit-btn benefit-btn--ghost" (click)="cancel()">
+      Cancelar
+    </button>
+    <button type="submit" class="benefit-btn benefit-btn--primary" (click)="savePlan()">
+      <i class="fa-solid fa-floppy-disk"></i>
+      Guardar cambios
+    </button>
+  </div>
+
 </div>

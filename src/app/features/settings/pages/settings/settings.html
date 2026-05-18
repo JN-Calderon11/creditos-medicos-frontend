@@ -1,0 +1,152 @@
+<section class="workflow-page">
+
+  <div class="workflow-header">
+    <span class="material-icons workflow-header-icon">settings</span>
+    <div>
+      <h1>Settings</h1>
+      <p>Configuración del perfil, seguridad y preferencias del sistema</p>
+    </div>
+  </div>
+
+  <!-- Flujo de configuración -->
+  <div class="workflow-section">
+    <h2 class="workflow-section-title">Flujo de configuración del sistema</h2>
+    <div class="workflow-steps">
+
+      <div class="workflow-step">
+        <div class="step-icon bg-primary">
+          <span class="material-icons">manage_accounts</span>
+        </div>
+        <div class="step-content">
+          <h3>1. Perfil</h3>
+          <p>Actualizar nombre, correo y foto de perfil del administrador.</p>
+        </div>
+      </div>
+
+      <div class="workflow-arrow"><span class="material-icons">arrow_forward</span></div>
+
+      <div class="workflow-step">
+        <div class="step-icon bg-warning">
+          <span class="material-icons">lock</span>
+        </div>
+        <div class="step-content">
+          <h3>2. Seguridad</h3>
+          <p>Cambio de contraseña, autenticación de dos factores y sesiones activas.</p>
+        </div>
+      </div>
+
+      <div class="workflow-arrow"><span class="material-icons">arrow_forward</span></div>
+
+      <div class="workflow-step">
+        <div class="step-icon bg-info">
+          <span class="material-icons">notifications</span>
+        </div>
+        <div class="step-content">
+          <h3>3. Notificaciones</h3>
+          <p>Configurar alertas por correo, push y eventos del sistema que se desean recibir.</p>
+        </div>
+      </div>
+
+      <div class="workflow-arrow"><span class="material-icons">arrow_forward</span></div>
+
+      <div class="workflow-step">
+        <div class="step-icon bg-success">
+          <span class="material-icons">tune</span>
+        </div>
+        <div class="step-content">
+          <h3>4. Preferencias</h3>
+          <p>Idioma, zona horaria, formato de fechas y tema visual de la aplicación.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Secciones de configuración -->
+  <div class="workflow-section">
+    <h2 class="workflow-section-title">Secciones disponibles</h2>
+    <div class="settings-grid">
+
+      <div class="settings-card">
+        <span class="material-icons settings-icon" style="color:#6366f1">manage_accounts</span>
+        <h3>Perfil de usuario</h3>
+        <p>Información personal, foto de perfil y datos de contacto.</p>
+        <span class="settings-tag">Próximamente</span>
+      </div>
+
+      <div class="settings-card">
+        <span class="material-icons settings-icon" style="color:#ef4444">security</span>
+        <h3>Seguridad</h3>
+        <p>Contraseña, 2FA y control de accesos al sistema.</p>
+        <span class="settings-tag">Próximamente</span>
+      </div>
+
+      <div class="settings-card">
+        <span class="material-icons settings-icon" style="color:#f59e0b">notifications_active</span>
+        <h3>Notificaciones</h3>
+        <p>Canales de alerta y eventos que activan una notificación.</p>
+        <span class="settings-tag">Próximamente</span>
+      </div>
+
+      <div class="settings-card">
+        <span class="material-icons settings-icon" style="color:#0ea5e9">business</span>
+        <h3>Empresa</h3>
+        <p>Datos de la organización, logo y configuración empresarial.</p>
+        <span class="settings-tag">Próximamente</span>
+      </div>
+
+      <div class="settings-card">
+        <span class="material-icons settings-icon" style="color:#10b981">api</span>
+        <h3>Integraciones</h3>
+        <p>Conexión con sistemas externos, APIs y webhooks.</p>
+        <span class="settings-tag">Próximamente</span>
+      </div>
+
+      <div class="settings-card">
+        <span class="material-icons settings-icon" style="color:#8b5cf6">backup</span>
+        <h3>Respaldo de datos</h3>
+        <p>Exportación y restauración de información del sistema.</p>
+        <span class="settings-tag">Próximamente</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="coming-soon-badge">
+    <span class="material-icons">build_circle</span>
+    Módulo en desarrollo — la configuración real se conectará próximamente
+  </div>
+
+</section>
+
+<style>
+  .workflow-page { padding: 2rem; max-width: 1100px; }
+
+  .workflow-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+  .workflow-header-icon { font-size: 2.5rem; color: #6b7280; }
+  .workflow-header h1 { margin: 0; font-size: 1.75rem; font-weight: 700; }
+  .workflow-header p { margin: 0; color: #6b7280; }
+
+  .workflow-section { margin-bottom: 2.5rem; }
+  .workflow-section-title { font-size: 1.1rem; font-weight: 600; color: #374151; margin-bottom: 1.5rem; }
+  .workflow-steps { display: flex; align-items: flex-start; gap: .75rem; flex-wrap: wrap; }
+
+  .workflow-step { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 1.25rem; width: 200px; box-shadow: 0 1px 4px rgba(0,0,0,.05); }
+  .step-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: .75rem; }
+  .step-icon .material-icons { color: #fff; font-size: 1.3rem; }
+  .step-content h3 { font-size: .9rem; font-weight: 600; margin: 0 0 .4rem; }
+  .step-content p { font-size: .78rem; color: #6b7280; margin: 0; line-height: 1.4; }
+
+  .workflow-arrow { color: #d1d5db; align-self: center; margin-top: -1.5rem; }
+
+  .settings-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+  .settings-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 1.5rem; box-shadow: 0 1px 4px rgba(0,0,0,.05); }
+  .settings-icon { font-size: 2rem; display: block; margin-bottom: .75rem; }
+  .settings-card h3 { font-size: .95rem; font-weight: 600; margin: 0 0 .4rem; }
+  .settings-card p { font-size: .8rem; color: #6b7280; margin: 0 0 .75rem; }
+  .settings-tag { font-size: .7rem; background: #f3f4f6; color: #9ca3af; border-radius: 20px; padding: .2rem .6rem; }
+
+  .coming-soon-badge { display: inline-flex; align-items: center; gap: .4rem; margin-top: 1rem; background: #f3f4f6; border: 1px dashed #d1d5db; border-radius: 8px; padding: .5rem 1rem; font-size: .8rem; color: #9ca3af; }
+
+  .bg-primary { background: #6366f1; } .bg-warning { background: #f59e0b; } .bg-info { background: #0ea5e9; } .bg-success { background: #10b981; }
+</style>

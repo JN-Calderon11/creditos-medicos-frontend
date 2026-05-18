@@ -1,1 +1,45 @@
-/* You can add global styles to this file, and also import other style files */
+/* ===== LIGHT MODE ===== */
+:root {
+  /* Brand & Status */
+  --bs-primary:        #0b7c7b; /* Color principal (Logo, ícono activo, barras del gráfico) */
+  --bs-success:        #198754; /* Verde para indicadores positivos */
+  --bs-danger:         #dc3545; /* Rojo para indicadores negativos */
+  --bs-warning:        #ffc107; /* Amarillo para alertas / línea secundaria del gráfico */
+
+  /* Backgrounds */
+  --bs-body-bg:        #ffffff; /* Fondo principal del área de contenido */
+  --bs-body-bg-subtle: #f8f9fa; /* Fondo más claro para el Sidebar / contenedores secundarios */
+  --bs-card-bg:        #ffffff; /* Fondo de las tarjetas y contenedores */
+
+  /* Typography */
+  --bs-body-color:     #212529; /* Texto principal (Títulos y números grandes) */
+  --bs-secondary-color:#6c757d; /* Texto secundario (Subtítulos y labels) */
+
+  /* Borders */
+  --bs-border-color:   #dee2e6; /* Separadores y bordes de tarjetas */
+}
+
+/* ===== DARK MODE ===== */
+:root[data-bs-theme="dark"] {
+  /* Brand & Status */
+  --bs-primary:        #0b7c7b; /* Color principal (Logo, ícono activo, barras del gráfico) */
+  --bs-success:        #20c997; /* Verde vibrante para indicadores positivos (flecha arriba) */
+  --bs-danger:         #ff5a5f; /* Rojo/Coral para indicadores negativos (flecha abajo) */
+  --bs-warning:        #ffc107; /* Amarillo (línea secundaria en el gráfico) */
+
+  /* Backgrounds */
+  --bs-body-bg:        #151b1e; /* Fondo principal del área de contenido */
+  --bs-body-bg-subtle: #111518; /* Fondo más oscuro para el Sidebar */
+  --bs-card-bg:        #1e2428; /* Fondo de las tarjetas y contenedores */
+
+  /* Typography */
+  --bs-body-color:     #ffffff; /* Texto principal (Títulos y números grandes) */
+  --bs-secondary-color:#9ba1a6; /* Texto secundario (Subtítulos y labels) */
+
+  /* Borders */
+  --bs-border-color:   #2b3236; /* Separadores y bordes de tarjetas */
+}
+
+* {
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.2s ease;
+}
